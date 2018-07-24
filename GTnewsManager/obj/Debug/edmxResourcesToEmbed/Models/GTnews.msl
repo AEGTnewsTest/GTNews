@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GTnewsModelStoreContainer" CdmEntityContainer="GTnewsEntities">
+    <EntitySetMapping Name="Carousel">
+      <EntityTypeMapping TypeName="GTnewsModel.Carousel">
+        <MappingFragment StoreEntitySet="Carousel">
+          <ScalarProperty Name="c_id" ColumnName="c_id" />
+          <ScalarProperty Name="c_status" ColumnName="c_status" />
+          <ScalarProperty Name="c_pictureurl" ColumnName="c_pictureurl" />
+          <ScalarProperty Name="c_CNtext" ColumnName="c_CNtext" />
+          <ScalarProperty Name="c_TWtext" ColumnName="c_TWtext" />
+          <ScalarProperty Name="c_buttonCNtext" ColumnName="c_buttonCNtext" />
+          <ScalarProperty Name="c_buttonTWtext" ColumnName="c_buttonTWtext" />
+          <ScalarProperty Name="c_buttonurl" ColumnName="c_buttonurl" />
+          <ScalarProperty Name="c_createdate" ColumnName="c_createdate" />
+          <ScalarProperty Name="c_editdate" ColumnName="c_editdate" />
+          <ScalarProperty Name="c_sort" ColumnName="c_sort" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Event">
+      <EntityTypeMapping TypeName="GTnewsModel.Event">
+        <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="event_id" ColumnName="event_id" />
+          <ScalarProperty Name="menu2_id" ColumnName="menu2_id" />
+          <ScalarProperty Name="event_pictureUrl" ColumnName="event_pictureUrl" />
+          <ScalarProperty Name="event_CNtitle" ColumnName="event_CNtitle" />
+          <ScalarProperty Name="event_TWtitle" ColumnName="event_TWtitle" />
+          <ScalarProperty Name="event_date" ColumnName="event_date" />
+          <ScalarProperty Name="event_CNtext" ColumnName="event_CNtext" />
+          <ScalarProperty Name="event_TWtext" ColumnName="event_TWtext" />
+          <ScalarProperty Name="event_downloadUrl" ColumnName="event_downloadUrl" />
+          <ScalarProperty Name="event_status" ColumnName="event_status" />
+          <ScalarProperty Name="event_sort" ColumnName="event_sort" />
+          <ScalarProperty Name="event_createdate" ColumnName="event_createdate" />
+          <ScalarProperty Name="event_editdate" ColumnName="event_editdate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menu">
+      <EntityTypeMapping TypeName="GTnewsModel.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+          <ScalarProperty Name="menu_url" ColumnName="menu_url" />
+          <ScalarProperty Name="menu_CNtext" ColumnName="menu_CNtext" />
+          <ScalarProperty Name="menu_TWtext" ColumnName="menu_TWtext" />
+          <ScalarProperty Name="menu_status" ColumnName="menu_status" />
+          <ScalarProperty Name="menu_sort" ColumnName="menu_sort" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menu2">
+      <EntityTypeMapping TypeName="GTnewsModel.Menu2">
+        <MappingFragment StoreEntitySet="Menu2">
+          <ScalarProperty Name="menu2_id" ColumnName="menu2_id" />
+          <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+          <ScalarProperty Name="menu2_CNtext" ColumnName="menu2_CNtext" />
+          <ScalarProperty Name="menu2_TWtext" ColumnName="menu2_TWtext" />
+          <ScalarProperty Name="menu2_url" ColumnName="menu2_url" />
+          <ScalarProperty Name="menu2_sort" ColumnName="menu2_sort" />
+          <ScalarProperty Name="menu2_status" ColumnName="menu2_status" />
+          <ScalarProperty Name="menu2_type" ColumnName="menu2_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question">
+      <EntityTypeMapping TypeName="GTnewsModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="qa_id" ColumnName="qa_id" />
+          <ScalarProperty Name="menu2_id" ColumnName="menu2_id" />
+          <ScalarProperty Name="qa_CNtitle" ColumnName="qa_CNtitle" />
+          <ScalarProperty Name="qa_TWtitle" ColumnName="qa_TWtitle" />
+          <ScalarProperty Name="qa_sort" ColumnName="qa_sort" />
+          <ScalarProperty Name="qa_status" ColumnName="qa_status" />
+          <ScalarProperty Name="qa_CNtext" ColumnName="qa_CNtext" />
+          <ScalarProperty Name="qa_TWtext" ColumnName="qa_TWtext" />
+          <ScalarProperty Name="qa_createdate" ColumnName="qa_createdate" />
+          <ScalarProperty Name="qa_editdate" ColumnName="qa_editdate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

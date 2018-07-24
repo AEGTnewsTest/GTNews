@@ -1,0 +1,94 @@
+﻿@model IEnumerable<GTnewsManager.Models.Question>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("SearchString", "Questions", FormMethod.Post))
+{
+    <p>
+        關鍵字: @Html.TextBox("search")
+        <input type="submit" value="查詢" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.qa_CNtitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qa_TWtitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qa_sort)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qa_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qa_CNtext)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qa_TWtext)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qa_createdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qa_editdate)
+        </th>
+        <th>
+           @Html.DisplayNameFor(model => model.Menu2.menu2_CNtext)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Menu2.menu2_TWtext)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.qa_CNtitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qa_TWtitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qa_sort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qa_status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qa_CNtext)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qa_TWtext)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qa_createdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qa_editdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Menu2.menu2_CNtext)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Menu2.menu2_TWtext)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.qa_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.qa_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.qa_id })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GTnewsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Carousel">
+    <Key>
+      <PropertyRef Name="c_id" />
+    </Key>
+    <Property Name="c_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="c_status" Type="bit" Nullable="false" />
+    <Property Name="c_pictureurl" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="c_CNtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="c_TWtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="c_buttonCNtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="c_buttonTWtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="c_buttonurl" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="c_createdate" Type="datetime" Nullable="false" />
+    <Property Name="c_editdate" Type="datetime" Nullable="false" />
+    <Property Name="c_sort" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="event_id" />
+    </Key>
+    <Property Name="event_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="menu2_id" Type="int" Nullable="false" />
+    <Property Name="event_pictureUrl" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="event_CNtitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="event_TWtitle" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="event_date" Type="datetime" Nullable="false" />
+    <Property Name="event_CNtext" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="event_TWtext" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="event_downloadUrl" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="event_status" Type="bit" Nullable="false" />
+    <Property Name="event_sort" Type="tinyint" Nullable="false" />
+    <Property Name="event_createdate" Type="datetime" Nullable="false" />
+    <Property Name="event_editdate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'GTnews.dbo.Log' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="menu_id" />
+    </Key>
+    <Property Name="menu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="menu_url" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="menu_CNtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="menu_TWtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="menu_status" Type="bit" Nullable="false" />
+    <Property Name="menu_sort" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Menu2">
+    <Key>
+      <PropertyRef Name="menu2_id" />
+    </Key>
+    <Property Name="menu2_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="menu_id" Type="int" Nullable="false" />
+    <Property Name="menu2_CNtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="menu2_TWtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="menu2_url" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="menu2_sort" Type="tinyint" Nullable="false" />
+    <Property Name="menu2_status" Type="bit" Nullable="false" />
+    <Property Name="menu2_type" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="qa_id" />
+    </Key>
+    <Property Name="qa_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="menu2_id" Type="int" Nullable="false" />
+    <Property Name="qa_CNtitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="qa_TWtitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="qa_sort" Type="tinyint" Nullable="false" />
+    <Property Name="qa_status" Type="bit" Nullable="false" />
+    <Property Name="qa_CNtext" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="qa_TWtext" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="qa_createdate" Type="datetime" Nullable="false" />
+    <Property Name="qa_editdate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Event_Menu2">
+    <End Role="Menu2" Type="Self.Menu2" Multiplicity="1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu2">
+        <PropertyRef Name="menu2_id" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="menu2_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu2_Menu">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+    <End Role="Menu2" Type="Self.Menu2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="menu_id" />
+      </Principal>
+      <Dependent Role="Menu2">
+        <PropertyRef Name="menu_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Menu2">
+    <End Role="Menu2" Type="Self.Menu2" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu2">
+        <PropertyRef Name="menu2_id" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="menu2_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GTnewsModelStoreContainer">
+    <EntitySet Name="Carousel" EntityType="Self.Carousel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu2" EntityType="Self.Menu2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Event_Menu2" Association="Self.FK_Event_Menu2">
+      <End Role="Menu2" EntitySet="Menu2" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu2_Menu" Association="Self.FK_Menu2_Menu">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="Menu2" EntitySet="Menu2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Menu2" Association="Self.FK_Question_Menu2">
+      <End Role="Menu2" EntitySet="Menu2" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

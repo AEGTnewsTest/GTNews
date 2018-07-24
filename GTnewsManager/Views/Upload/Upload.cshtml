@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Upload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr />
+@if (ViewBag.ResultMessage != null)
+{
+    @Html.Label("info", (string)ViewBag.ResultMessage, new { @class = "text-info" })
+}
+
+
+<div class="form-group">
+    <label for="file">上傳檔案:</label>
+    <form action="@Url.Action("Upload")" method="post" enctype="multipart/form-data">
+        <div class="col-md-10">
+            <input type="file" name="file" id="file" />
+            <input type="submit" />
+        </div>
+    </form>
+</div>
+

@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GTnewsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Carousel">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_status" Type="bit" Nullable="false" />
+          <Property Name="c_pictureurl" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="c_CNtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="c_TWtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="c_buttonCNtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="c_buttonTWtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="c_buttonurl" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="c_createdate" Type="datetime" Nullable="false" />
+          <Property Name="c_editdate" Type="datetime" Nullable="false" />
+          <Property Name="c_sort" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="event_id" />
+          </Key>
+          <Property Name="event_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menu2_id" Type="int" Nullable="false" />
+          <Property Name="event_pictureUrl" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="event_CNtitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="event_TWtitle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="event_date" Type="datetime" Nullable="false" />
+          <Property Name="event_CNtext" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="event_TWtext" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="event_downloadUrl" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="event_status" Type="bit" Nullable="false" />
+          <Property Name="event_sort" Type="tinyint" Nullable="false" />
+          <Property Name="event_createdate" Type="datetime" Nullable="false" />
+          <Property Name="event_editdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'GTnews.dbo.Log' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menu_url" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="menu_CNtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="menu_TWtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="menu_status" Type="bit" Nullable="false" />
+          <Property Name="menu_sort" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu2">
+          <Key>
+            <PropertyRef Name="menu2_id" />
+          </Key>
+          <Property Name="menu2_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menu_id" Type="int" Nullable="false" />
+          <Property Name="menu2_CNtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="menu2_TWtext" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="menu2_url" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="menu2_sort" Type="tinyint" Nullable="false" />
+          <Property Name="menu2_status" Type="bit" Nullable="false" />
+          <Property Name="menu2_type" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="qa_id" />
+          </Key>
+          <Property Name="qa_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menu2_id" Type="int" Nullable="false" />
+          <Property Name="qa_CNtitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="qa_TWtitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="qa_sort" Type="tinyint" Nullable="false" />
+          <Property Name="qa_status" Type="bit" Nullable="false" />
+          <Property Name="qa_CNtext" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="qa_TWtext" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="qa_createdate" Type="datetime" Nullable="false" />
+          <Property Name="qa_editdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Event_Menu2">
+          <End Role="Menu2" Type="Self.Menu2" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu2">
+              <PropertyRef Name="menu2_id" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="menu2_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu2_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="Menu2" Type="Self.Menu2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="menu_id" />
+            </Principal>
+            <Dependent Role="Menu2">
+              <PropertyRef Name="menu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Menu2">
+          <End Role="Menu2" Type="Self.Menu2" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu2">
+              <PropertyRef Name="menu2_id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="menu2_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GTnewsModelStoreContainer">
+          <EntitySet Name="Carousel" EntityType="Self.Carousel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu2" EntityType="Self.Menu2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Event_Menu2" Association="Self.FK_Event_Menu2">
+            <End Role="Menu2" EntitySet="Menu2" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu2_Menu" Association="Self.FK_Menu2_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="Menu2" EntitySet="Menu2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Menu2" Association="Self.FK_Question_Menu2">
+            <End Role="Menu2" EntitySet="Menu2" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GTnewsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Carousel">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="c_status" Type="Boolean" Nullable="false" />
+          <Property Name="c_pictureurl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="c_CNtext" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="c_TWtext" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="c_buttonCNtext" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="c_buttonTWtext" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="c_buttonurl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="c_createdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="c_editdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="c_sort" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="event_id" />
+          </Key>
+          <Property Name="event_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menu2_id" Type="Int32" Nullable="false" />
+          <Property Name="event_pictureUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="event_CNtitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="event_TWtitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="event_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="event_CNtext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="event_TWtext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="event_downloadUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="event_status" Type="Boolean" Nullable="false" />
+          <Property Name="event_sort" Type="Byte" Nullable="false" />
+          <Property Name="event_createdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="event_editdate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Menu2" Relationship="Self.FK_Event_Menu2" FromRole="Event" ToRole="Menu2" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menu_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="menu_CNtext" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="menu_TWtext" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="menu_status" Type="Boolean" Nullable="false" />
+          <Property Name="menu_sort" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Menu2" Relationship="Self.FK_Menu2_Menu" FromRole="Menu" ToRole="Menu2" />
+        </EntityType>
+        <EntityType Name="Menu2">
+          <Key>
+            <PropertyRef Name="menu2_id" />
+          </Key>
+          <Property Name="menu2_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menu_id" Type="Int32" Nullable="false" />
+          <Property Name="menu2_CNtext" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="menu2_TWtext" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="menu2_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="menu2_sort" Type="Byte" Nullable="false" />
+          <Property Name="menu2_status" Type="Boolean" Nullable="false" />
+          <Property Name="menu2_type" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Event_Menu2" FromRole="Menu2" ToRole="Event" />
+          <NavigationProperty Name="Menu" Relationship="Self.FK_Menu2_Menu" FromRole="Menu2" ToRole="Menu" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Question_Menu2" FromRole="Menu2" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="qa_id" />
+          </Key>
+          <Property Name="qa_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menu2_id" Type="Int32" Nullable="false" />
+          <Property Name="qa_CNtitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="qa_TWtitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="qa_sort" Type="Byte" Nullable="false" />
+          <Property Name="qa_status" Type="Boolean" Nullable="false" />
+          <Property Name="qa_CNtext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="qa_TWtext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="qa_createdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="qa_editdate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Menu2" Relationship="Self.FK_Question_Menu2" FromRole="Question" ToRole="Menu2" />
+        </EntityType>
+        <Association Name="FK_Event_Menu2">
+          <End Role="Menu2" Type="Self.Menu2" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu2">
+              <PropertyRef Name="menu2_id" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="menu2_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu2_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="Menu2" Type="Self.Menu2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="menu_id" />
+            </Principal>
+            <Dependent Role="Menu2">
+              <PropertyRef Name="menu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_Menu2">
+          <End Role="Menu2" Type="Self.Menu2" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu2">
+              <PropertyRef Name="menu2_id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="menu2_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GTnewsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Carousel" EntityType="Self.Carousel" />
+          <EntitySet Name="Event" EntityType="Self.Event" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" />
+          <EntitySet Name="Menu2" EntityType="Self.Menu2" />
+          <EntitySet Name="Question" EntityType="Self.Question" />
+          <AssociationSet Name="FK_Event_Menu2" Association="Self.FK_Event_Menu2">
+            <End Role="Menu2" EntitySet="Menu2" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu2_Menu" Association="Self.FK_Menu2_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="Menu2" EntitySet="Menu2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_Menu2" Association="Self.FK_Question_Menu2">
+            <End Role="Menu2" EntitySet="Menu2" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GTnewsModelStoreContainer" CdmEntityContainer="GTnewsEntities">
+          <EntitySetMapping Name="Carousel">
+            <EntityTypeMapping TypeName="GTnewsModel.Carousel">
+              <MappingFragment StoreEntitySet="Carousel">
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="c_status" ColumnName="c_status" />
+                <ScalarProperty Name="c_pictureurl" ColumnName="c_pictureurl" />
+                <ScalarProperty Name="c_CNtext" ColumnName="c_CNtext" />
+                <ScalarProperty Name="c_TWtext" ColumnName="c_TWtext" />
+                <ScalarProperty Name="c_buttonCNtext" ColumnName="c_buttonCNtext" />
+                <ScalarProperty Name="c_buttonTWtext" ColumnName="c_buttonTWtext" />
+                <ScalarProperty Name="c_buttonurl" ColumnName="c_buttonurl" />
+                <ScalarProperty Name="c_createdate" ColumnName="c_createdate" />
+                <ScalarProperty Name="c_editdate" ColumnName="c_editdate" />
+                <ScalarProperty Name="c_sort" ColumnName="c_sort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Event">
+            <EntityTypeMapping TypeName="GTnewsModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="event_id" ColumnName="event_id" />
+                <ScalarProperty Name="menu2_id" ColumnName="menu2_id" />
+                <ScalarProperty Name="event_pictureUrl" ColumnName="event_pictureUrl" />
+                <ScalarProperty Name="event_CNtitle" ColumnName="event_CNtitle" />
+                <ScalarProperty Name="event_TWtitle" ColumnName="event_TWtitle" />
+                <ScalarProperty Name="event_date" ColumnName="event_date" />
+                <ScalarProperty Name="event_CNtext" ColumnName="event_CNtext" />
+                <ScalarProperty Name="event_TWtext" ColumnName="event_TWtext" />
+                <ScalarProperty Name="event_downloadUrl" ColumnName="event_downloadUrl" />
+                <ScalarProperty Name="event_status" ColumnName="event_status" />
+                <ScalarProperty Name="event_sort" ColumnName="event_sort" />
+                <ScalarProperty Name="event_createdate" ColumnName="event_createdate" />
+                <ScalarProperty Name="event_editdate" ColumnName="event_editdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu">
+            <EntityTypeMapping TypeName="GTnewsModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+                <ScalarProperty Name="menu_url" ColumnName="menu_url" />
+                <ScalarProperty Name="menu_CNtext" ColumnName="menu_CNtext" />
+                <ScalarProperty Name="menu_TWtext" ColumnName="menu_TWtext" />
+                <ScalarProperty Name="menu_status" ColumnName="menu_status" />
+                <ScalarProperty Name="menu_sort" ColumnName="menu_sort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu2">
+            <EntityTypeMapping TypeName="GTnewsModel.Menu2">
+              <MappingFragment StoreEntitySet="Menu2">
+                <ScalarProperty Name="menu2_id" ColumnName="menu2_id" />
+                <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+                <ScalarProperty Name="menu2_CNtext" ColumnName="menu2_CNtext" />
+                <ScalarProperty Name="menu2_TWtext" ColumnName="menu2_TWtext" />
+                <ScalarProperty Name="menu2_url" ColumnName="menu2_url" />
+                <ScalarProperty Name="menu2_sort" ColumnName="menu2_sort" />
+                <ScalarProperty Name="menu2_status" ColumnName="menu2_status" />
+                <ScalarProperty Name="menu2_type" ColumnName="menu2_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question">
+            <EntityTypeMapping TypeName="GTnewsModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="qa_id" ColumnName="qa_id" />
+                <ScalarProperty Name="menu2_id" ColumnName="menu2_id" />
+                <ScalarProperty Name="qa_CNtitle" ColumnName="qa_CNtitle" />
+                <ScalarProperty Name="qa_TWtitle" ColumnName="qa_TWtitle" />
+                <ScalarProperty Name="qa_sort" ColumnName="qa_sort" />
+                <ScalarProperty Name="qa_status" ColumnName="qa_status" />
+                <ScalarProperty Name="qa_CNtext" ColumnName="qa_CNtext" />
+                <ScalarProperty Name="qa_TWtext" ColumnName="qa_TWtext" />
+                <ScalarProperty Name="qa_createdate" ColumnName="qa_createdate" />
+                <ScalarProperty Name="qa_editdate" ColumnName="qa_editdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

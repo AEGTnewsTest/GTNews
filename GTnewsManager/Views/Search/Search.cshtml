@@ -1,0 +1,65 @@
+﻿@model List<FileInfo>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @if (ViewBag.ResultMessage != null)//判斷如果有訊息，則顯示。
+    {
+        @Html.Label("info", (string)ViewBag.ResultMessage, new { @class = "text-info" })
+    }
+
+</div>
+<div style="text-align:center;">
+    <h2 class="alert-danger">素材及相關文件</h2>
+</div>
+
+
+
+
+<div class="form-group">
+    <table class="table">
+        <thead><tr><td>檔案名稱</td><td>檔案大小</td></tr></thead>
+       
+        <tbody>
+            @foreach (var pd in this.Model)
+            {
+                float lenght = Convert.ToSingle(@pd.Length) / 1024 / 1024;
+                <tr>
+                    <td>
+                        @pd.Name
+                    </td>
+                    <td>
+                        @Math.Round(lenght, 4) MB
+                    </td>
+                    <td>
+                        @Html.ActionLink("下載", "DownloadFile", new { directoryName = pd.DirectoryName, name = pd.Name }, new { @class = "btn btn-default" })
+                    </td>
+                    <td>
+                        @using(@Html.BeginForm("Remove","Search",FormMethod.Post,new { @class = "Delete" }))
+                        {
+                            @Html.Hidden("directoryName", pd.DirectoryName);
+                            @Html.Hidden("name", pd.Name);
+                            <input type="submit" value="刪除" class="btn btn-default"/>
+                        }
+                        @*@Html.ActionLink("刪除檔案", "Remove", new { directoryName = pd.DirectoryName, name = pd.Name}, new { @class = "btn btn-default" })*@
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="form-group">
+
+    <form action="@Url.Action("Upload")" method="post" enctype="multipart/form-data">
+        <!--<div class="col-md-10">-->
+            <h3 for="file">上傳檔案:</h3>
+            <input type="file" name="file" id="file" />
+            <input type="submit" class="btn btn-default" />
+        <!--</div>-->
+    </form>
+</div>

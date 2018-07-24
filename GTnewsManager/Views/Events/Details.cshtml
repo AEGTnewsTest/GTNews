@@ -1,0 +1,114 @@
+﻿@model GTnewsManager.Models.Event
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.event_pictureUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.event_pictureUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.event_CNtitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.event_CNtitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.event_TWtitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.event_TWtitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.event_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.event_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.event_CNtext)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.event_CNtext)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.event_TWtext)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.event_TWtext)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.event_downloadUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.event_downloadUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.event_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.event_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.event_sort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.event_sort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.event_createdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.event_createdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.event_editdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.event_editdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Menu2.menu2_CNtext)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Menu2.menu2_CNtext)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.event_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

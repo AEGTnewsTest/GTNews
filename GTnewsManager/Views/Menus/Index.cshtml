@@ -1,0 +1,57 @@
+﻿@model IEnumerable<GTnewsManager.Models.Menu>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.menu_url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.menu_CNtext)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.menu_TWtext)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.menu_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.menu_sort)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.menu_url)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.menu_CNtext)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.menu_TWtext)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.menu_status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.menu_sort)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.menu_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.menu_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.menu_id })
+        </td>
+    </tr>
+}
+
+</table>

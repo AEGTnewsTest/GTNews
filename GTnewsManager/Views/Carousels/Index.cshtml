@@ -1,0 +1,87 @@
+﻿@model IEnumerable<GTnewsManager.Models.Carousel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.c_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c_pictureurl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c_CNtext)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c_TWtext)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c_buttonCNtext)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c_buttonTWtext)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c_buttonurl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c_createdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c_editdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.c_sort)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.c_status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.c_pictureurl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.c_CNtext)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.c_TWtext)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.c_buttonCNtext)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.c_buttonTWtext)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.c_buttonurl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.c_createdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.c_editdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.c_sort)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.c_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.c_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.c_id })
+        </td>
+    </tr>
+}
+
+</table>

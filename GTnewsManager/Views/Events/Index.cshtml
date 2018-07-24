@@ -1,0 +1,99 @@
+﻿@model IEnumerable<GTnewsManager.Models.Event>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.event_pictureUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.event_CNtitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.event_TWtitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.event_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.event_CNtext)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.event_TWtext)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.event_downloadUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.event_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.event_sort)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.event_createdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.event_editdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Menu2.menu2_CNtext)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.event_pictureUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.event_CNtitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.event_TWtitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.event_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.event_CNtext)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.event_TWtext)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.event_downloadUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.event_status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.event_sort)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.event_createdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.event_editdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Menu2.menu2_CNtext)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.event_id })  
+            @Html.ActionLink("Details", "Details", new { id=item.event_id }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.event_id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,74 @@
+﻿@model GTnewsManager.Models.Menu2
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Menu2</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.menu2_CNtext)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.menu2_CNtext)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.menu2_TWtext)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.menu2_TWtext)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.menu2_url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.menu2_url)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.menu2_sort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.menu2_sort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.menu2_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.menu2_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.menu2_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.menu2_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Menu.menu_url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Menu.menu_url)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.menu2_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

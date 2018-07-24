@@ -1,0 +1,98 @@
+﻿@model GTnewsManager.Models.Carousel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Carousel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.c_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.c_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.c_pictureurl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.c_pictureurl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.c_CNtext)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.c_CNtext)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.c_TWtext)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.c_TWtext)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.c_buttonCNtext)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.c_buttonCNtext)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.c_buttonTWtext)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.c_buttonTWtext)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.c_buttonurl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.c_buttonurl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.c_createdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.c_createdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.c_editdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.c_editdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.c_sort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.c_sort)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.c_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
