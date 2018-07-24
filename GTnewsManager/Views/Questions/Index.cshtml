@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("新增", "Create", new { area = "" }, new { @class = "btn btn-primary" })
 </p>
 @using (Html.BeginForm("SearchString", "Questions", FormMethod.Post))
 {
