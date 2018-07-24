@@ -6,13 +6,44 @@
 
 <h2>Index</h2>
 
+
+<script language="JavaScript">
+
+	var state = 1;
+
+	function transfer1To2() {
+	    if(state == 1) {
+	        document.getElementById('textbox').value = "";
+	        state = 2;
+	    }
+	}
+
+	function transfer2To3() {
+	    if(state == 2) {
+	        state = 3;
+	    }
+	}
+
+	function transfer2To1() {
+	    if(state == 2) {
+	        document.getElementById('textbox').value = "請輸入關鍵字";
+	        state = 1;
+	    }
+	}
+	</script>
+
+
 <p>
     @Html.ActionLink("新增", "Create", new { area = "" }, new { @class = "btn btn-primary" })
 </p>
 @using (Html.BeginForm("SearchString", "Questions", FormMethod.Post))
 {
     <p>
-        關鍵字: @Html.TextBox("search")
+        關鍵字: <input name="textbox" id="textbox" type="text" value="請輸入關鍵字"
+       onMouseDown="transfer1To2();"
+       onFocus="transfer1To2();"
+       onChange="transfer2To3();"
+       onBlur="transfer2To1();">@*@Html.TextBox("search")*@
         <input type="submit" value="查詢" />
     </p>
 }
