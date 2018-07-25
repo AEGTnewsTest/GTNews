@@ -1,0 +1,39 @@
+﻿body {
+    font-family: 'Libre Baskerville', serif;
+}
+table tr:nth-child(even){
+    background:#82c6e0;
+}
+footer {
+    text-align:center;
+}
+footer .img {
+    width:100%;
+    height:30%;
+}
+th,tr,td {
+    text-align:center;
+}
+.btnn {
+    padding: 0px 8px;
+}
+.navbar-inverse {
+    
+}
+/*導覽列文字*/
+.navbar-inverse .navbar-nav>li>a{
+    color:white;
+}
+/*導覽列標題文字*/
+    .navbar-inverse .navbar-brand {
+        color: white;
+    }
+.navbar-inverse .navbar-brand:hover, 
+.navbar-inverse .navbar-brand:focus {
+    color: #999;
+    /* background-color: transparent; */
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+    color:#999;
+}
